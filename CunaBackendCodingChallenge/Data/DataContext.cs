@@ -8,5 +8,7 @@ namespace CunaBackendCodingChallenge.Data
         {
 
         }
+
+        public DbSet<ClientRequest> ClientRequests { get; set; }
     }
 }
