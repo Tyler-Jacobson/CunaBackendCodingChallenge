@@ -10,5 +10,6 @@ namespace CunaBackendCodingChallenge.Data
         }
 
         public DbSet<ClientRequest> ClientRequests { get; set; }
+        public DbSet<ServiceReport> ServiceReports { get; set; }
     }
 }
