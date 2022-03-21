@@ -36,7 +36,27 @@ namespace CunaBackendCodingChallenge.Controllers
             return NoContent();
         }
 
+        [HttpPut("callback/{id}")]
+        public async Task<ActionResult<ServiceReport>> UpdateReport(int id, ServiceReportDto serviceReport)
+        {
+            var clientRequest = await _context.ClientRequests
+                .Where(c => c.Id == id)
+                .FirstOrDefaultAsync();
+            if (clientRequest == null)
+                return NotFound($"Client Request with id {id} not found");
 
+            var dbServiceReport = await _context.ServiceReports
+                .Where(c => c.ClientRequestId == id)
+                .FirstOrDefaultAsync();
+            if (dbServiceReport == null)
+                return NotFound($"Client Request with id {id} does not have an active Service Report");
 
+            dbServiceReport.Status = serviceReport.Status;
+            dbServiceReport.Detail = serviceReport.Detail;
+
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
     }
 }

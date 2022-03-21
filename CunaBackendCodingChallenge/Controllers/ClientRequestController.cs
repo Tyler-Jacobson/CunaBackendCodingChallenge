@@ -33,7 +33,7 @@ namespace CunaBackendCodingChallenge.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<ClientRequest>> CreateRequest(ClientRequest request)
+        public async Task<ActionResult<ClientRequest>> CreateRequest(ClientRequestDto request)
         {
             var newClientRequest = new ClientRequest
             {
