@@ -1,7 +1,9 @@
 ﻿using CunaBackendCodingChallenge.Data;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using static CunaBackendCodingChallenge.MockAPI.Stub;
 
 namespace CunaBackendCodingChallenge.Controllers
 {
@@ -16,7 +18,7 @@ namespace CunaBackendCodingChallenge.Controllers
         }
 
 
-        [HttpGet]
+        [HttpGet("{requestId}")]
         public async Task<ActionResult<ClientRequest>> Get(int requestId)
         {
             var clientRequest = await _context.ClientRequests
@@ -29,5 +31,34 @@ namespace CunaBackendCodingChallenge.Controllers
 
             return Ok(clientRequest);
         }
+
+        [HttpPost]
+        public async Task<ActionResult<ServiceReport>> CreateRequest(ClientRequest request)
+        {
+            var newClientRequest = new ClientRequest
+            {
+                Body = request.Body
+            };
+
+            _context.ClientRequests.Add(newClientRequest);
+            await _context.SaveChangesAsync();
+
+            var headers = new Dictionary<string, string>
+            {
+                { "body", newClientRequest.Body },
+                { "callback", $"/callback/{newClientRequest.Id}" }
+            };
+
+            MockAPI.Stub stub = new MockAPI.Stub();
+
+            // makes api call here to 3rd party service
+            var response = await stub.MockPostAsync("http://example.com/request", headers);
+            // some sort of backup will need to be in place to make a follow-up request in case the service is currently down
+
+            // returns a url that can be used by the client to check the status of their request
+            return Ok($"{this.Request.Scheme}://{this.Request.Host}/api/ClientRequest/{newClientRequest.Id}");
+        }
+
+
     }
 }
