@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using CunaBackendCodingChallenge.DTOs;
 
 namespace CunaBackendCodingChallenge.Controllers
 {
@@ -16,8 +17,11 @@ namespace CunaBackendCodingChallenge.Controllers
         }
 
         [HttpPost("callback/{id}")]
-        public async Task<ActionResult<ServiceReport>> CreateReport(int id, ServiceReportDto serviceReport)
+        public async Task<ActionResult<ServiceReport>> CreateReport(int id, CreateServiceReportDto serviceReport)
         {
+            if (serviceReport.Body != "STARTED")
+                return BadRequest("Requests must have a body containing the text 'STARTED'");
+
             var clientRequest = await _context.ClientRequests
                 .Where(c => c.Id == id)
                 .FirstOrDefaultAsync();
@@ -37,8 +41,11 @@ namespace CunaBackendCodingChallenge.Controllers
         }
 
         [HttpPut("callback/{id}")]
-        public async Task<ActionResult<ServiceReport>> UpdateReport(int id, ServiceReportDto serviceReport)
+        public async Task<ActionResult<ServiceReport>> UpdateReport(int id, UpdateServiceReportDto serviceReport)
         {
+            if (serviceReport.Status != "PROCESSED" && (serviceReport.Status != "COMPLETED") && (serviceReport.Status != "ERROR"))
+                return BadRequest("Requests must have 'status' containing one of: 'PROCESSED' | 'COMPLETED' | 'ERROR'");
+
             var clientRequest = await _context.ClientRequests
                 .Where(c => c.Id == id)
                 .FirstOrDefaultAsync();

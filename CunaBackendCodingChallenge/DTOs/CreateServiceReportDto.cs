@@ -1,7 +1,8 @@
 ﻿namespace CunaBackendCodingChallenge
 {
-    public class ClientRequestDto
+    public class CreateServiceReportDto
     {
         public string Body { get; set; } = string.Empty;
+
     }
 }

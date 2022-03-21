@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using CunaBackendCodingChallenge.DTOs;
 using static CunaBackendCodingChallenge.MockAPI.Stub;
 
 namespace CunaBackendCodingChallenge.Controllers
@@ -39,6 +40,10 @@ namespace CunaBackendCodingChallenge.Controllers
             {
                 Body = request.Body
             };
+
+            if (newClientRequest.Body == string.Empty)
+                return BadRequest("Requests must contain a valid 'body'");
+
 
             _context.ClientRequests.Add(newClientRequest);
             await _context.SaveChangesAsync();

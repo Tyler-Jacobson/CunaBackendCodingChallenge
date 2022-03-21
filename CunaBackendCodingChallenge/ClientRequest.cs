@@ -6,7 +6,7 @@ namespace CunaBackendCodingChallenge
     {
         public int Id { get; set; }
 
-        public string Body { get; set; } = string.Empty;
+        public string Body { get; set; }
         public ServiceReport? ServiceReport { get; set; }
     }
 }
