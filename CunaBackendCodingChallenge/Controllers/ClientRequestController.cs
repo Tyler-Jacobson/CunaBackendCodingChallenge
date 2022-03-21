@@ -18,11 +18,11 @@ namespace CunaBackendCodingChallenge.Controllers
         }
 
 
-        [HttpGet("{requestId}")]
-        public async Task<ActionResult<ClientRequest>> Get(int requestId)
+        [HttpGet("{id}")]
+        public async Task<ActionResult<ClientRequest>> Get(int id)
         {
             var clientRequest = await _context.ClientRequests
-                .Where(c => c.Id == requestId)
+                .Where(c => c.Id == id)
                 .Include(c => c.ServiceReport)
                 .FirstOrDefaultAsync();
 
@@ -33,7 +33,7 @@ namespace CunaBackendCodingChallenge.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<ServiceReport>> CreateRequest(ClientRequest request)
+        public async Task<ActionResult<ClientRequest>> CreateRequest(ClientRequest request)
         {
             var newClientRequest = new ClientRequest
             {
