@@ -1,8 +1,10 @@
-# CUNA Mututal Backend Coding Challenge
+# CUNA Mutual Backend Coding Challenge
 
 ## .NET 6 and SQL Server are needed to run this project.
 Download links:
+
 https://dotnet.microsoft.com/en-us/download/dotnet/6.0
+
 https://www.microsoft.com/en-us/sql-server/sql-server-downloads
 
 ### If you have any issues running the project, please contact me TylerJacobsonSE@gmail.com
@@ -13,23 +15,23 @@ Open your command line interface, navigate to a suitable directory and run the f
 
 ### `git clone https://github.com/Tyler-Jacobson/CunaBackendCodingChallenge`
 
-In order to run the project:
+In order to run the project, run:
 ### `cd CunaBackendCodingChallenge`
 
 Once in the project directory, you can run this command to create the database:
 
 ### `dotnet ef database update`
 
-You can run the below command to start the API. This can probably also be done by opening the project in your IDE and pressing the start button.
+After this, you can run the below command to start the API. This can probably also be done by opening the project in your IDE and pressing the start button.
 ### `dotnet run`
 
-In order to run tests, you will need to cd from the main directory in to the tests directory. This may require you to 'cd -' if you're already in CunaBackendCodingChallenge
+In order to run tests, you will need to cd from the main directory in to the tests directory. This may require you to 'cd -' if you're already in CunaBackendCodingChallenge. Note: The database needs to be created before running tests, see above
 ### `cd -`
 ### `cd CunaBackendCodingChallenge.Test`
 
 Once in the test directory, you can use the following command to run all tests
 ### `dotnet test`
-Although this will look much better in the 'Test Explorer' window of your IDE (This has only been tried with Visual Studio 2022)
+Although this will probably look much better in the 'Test Explorer' window of your IDE (built using Visual Studio 2022)
 
 ## Notes:
 I've chosen to implement this project as a stateless REST API with a relational database. The database is in 3rd normal form, and the design details can be found in the accompanying design doc.
@@ -37,7 +39,7 @@ I've chosen to implement this project as a stateless REST API with a relational 
 I've also left some comments in the code to explain my thinking in certain situations, and in areas where more code would be required in a production level application.
 
 ## General Info:
-Boostrapped using Visual Studio 2022's ASP.NET Core Web API template
+Bootstrapped using Visual Studio 2022's ASP.NET Core Web API template
 
 Written in C#
 
