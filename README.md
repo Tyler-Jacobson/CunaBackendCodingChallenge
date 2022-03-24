@@ -31,7 +31,7 @@ In order to run tests, you will need to cd from the main directory in to the tes
 
 Once in the test directory, you can use the following command to run all tests
 ### `dotnet test`
-Although this will probably look much better in the 'Test Explorer' window of your IDE (built using Visual Studio 2022)
+Although this will probably look much better in the 'Test Explorer' window of your IDE (built with VS2022)
 
 ## Notes:
 I've chosen to implement this project as a stateless REST API with a relational database. The database is in 3rd normal form, and the design details can be found in the accompanying design doc.
