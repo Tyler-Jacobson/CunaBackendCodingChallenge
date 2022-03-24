@@ -16,7 +16,7 @@ Open your command line interface, navigate to a suitable directory and run the f
 ### `git clone https://github.com/Tyler-Jacobson/CunaBackendCodingChallenge`
 
 In order to run the project:
-### `cd CunaBackendCodingChallenge`
+### `cd CunaBackendCodingChallenge` x2
 
 Once in the project directory, you can run this command to create the database:
 
