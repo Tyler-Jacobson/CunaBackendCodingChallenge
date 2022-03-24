@@ -22,7 +22,7 @@ Once in the project directory, you can run this command to create the database:
 
 ### `dotnet ef database update`
 
-After this, you can run the below command to start the API. This can probably also be done by opening the project in your IDE and pressing the start button.
+After this, you will be able run the below command to start the API. This can probably also be done by opening the project in your IDE and pressing the start button.
 ### `dotnet run`
 
 In order to run tests, you will need to cd from the main directory in to the tests directory. This may require you to 'cd -' if you're already in CunaBackendCodingChallenge. Note: The database needs to be created before running tests, see above
