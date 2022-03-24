@@ -28,6 +28,8 @@ namespace CunaBackendCodingChallenge.Controllers
             if (clientRequest == null)
                 return NotFound($"Client Request with id {id} not found");
 
+            clientRequest.ModifiedDateTime = DateTime.UtcNow;
+
             var report = new ServiceReport
             {
                 Body = serviceReport.Body,
@@ -57,6 +59,8 @@ namespace CunaBackendCodingChallenge.Controllers
                 .FirstOrDefaultAsync();
             if (dbServiceReport == null)
                 return NotFound($"Client Request with id {id} does not have an active Service Report");
+
+            clientRequest.ModifiedDateTime = DateTime.UtcNow;
 
             dbServiceReport.Status = serviceReport.Status;
             dbServiceReport.Detail = serviceReport.Detail;

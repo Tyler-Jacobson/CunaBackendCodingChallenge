@@ -38,7 +38,9 @@ namespace CunaBackendCodingChallenge.Controllers
         {
             var newClientRequest = new ClientRequest
             {
-                Body = request.Body
+                Body = request.Body,
+                CreatedDateTime = DateTime.UtcNow,
+                ModifiedDateTime = DateTime.UtcNow
             };
 
             if (newClientRequest.Body == string.Empty)
