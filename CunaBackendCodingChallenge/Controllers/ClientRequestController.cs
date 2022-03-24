@@ -23,8 +23,8 @@ namespace CunaBackendCodingChallenge.Controllers
         public async Task<ActionResult<ClientRequest>> Get(int id)
         {
             var clientRequest = await _context.ClientRequests
-                .Where(c => c.Id == id)
-                .Include(c => c.ServiceReport)
+                .Where(client => client.Id == id)
+                .Include(client => client.ServiceReport)
                 .FirstOrDefaultAsync();
 
             if (clientRequest == null)
@@ -56,12 +56,18 @@ namespace CunaBackendCodingChallenge.Controllers
 
             MockAPI.Stub stub = new MockAPI.Stub();
 
-            // makes api call here to 3rd party service
+            
             var response = await stub.MockPostAsync("http://example.com/request", headers);
+            // makes api call here to 3rd party service
             // some sort of backup will need to be in place to make a follow-up request in case the service is currently down
 
             // returns a url that can be used by the client to check the status of their request
-            return Ok($"{this.Request.Scheme}://{this.Request.Host}/api/ClientRequest/{newClientRequest.Id}");
+            var returnValues = new Dictionary<string, string>
+            {
+                { "url", $"{this.Request.Scheme}://{this.Request.Host}/api/ClientRequest/{newClientRequest.Id}" },
+                { "id", $"{newClientRequest.Id}" }
+            };
+            return Ok(returnValues);
         }
 
 

@@ -1,7 +1,12 @@
 ﻿namespace CunaBackendCodingChallenge.DTOs
 {
+    
     public class ClientRequestDto
     {
+        public ClientRequestDto(string body)
+        {
+            this.Body = body;
+        }
         public string Body { get; set; } = string.Empty;
     }
 }
