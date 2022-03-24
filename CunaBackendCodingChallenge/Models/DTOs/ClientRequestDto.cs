@@ -1,4 +1,4 @@
-﻿namespace CunaBackendCodingChallenge.DTOs
+﻿namespace CunaBackendCodingChallenge.Models.DTOs
 {
     
     public class ClientRequestDto

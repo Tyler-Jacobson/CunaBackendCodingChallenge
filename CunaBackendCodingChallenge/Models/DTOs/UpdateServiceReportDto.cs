@@ -1,4 +1,4 @@
-﻿namespace CunaBackendCodingChallenge
+﻿namespace CunaBackendCodingChallenge.Models.DTOs
 {
     public class UpdateServiceReportDto
     {

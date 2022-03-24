@@ -1,6 +1,7 @@
-﻿using System.Text.Json.Serialization;
+﻿using CunaBackendCodingChallenge.Models;
+using System.Text.Json.Serialization;
 
-namespace CunaBackendCodingChallenge
+namespace CunaBackendCodingChallenge.Models
 {
     public class ServiceReport
     {

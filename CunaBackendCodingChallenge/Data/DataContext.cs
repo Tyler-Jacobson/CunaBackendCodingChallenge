@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using CunaBackendCodingChallenge.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace CunaBackendCodingChallenge.Data
 {

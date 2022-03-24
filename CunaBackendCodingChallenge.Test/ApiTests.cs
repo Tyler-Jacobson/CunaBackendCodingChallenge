@@ -1,4 +1,5 @@
-using CunaBackendCodingChallenge.DTOs;
+using CunaBackendCodingChallenge.Models.DTOs;
+using CunaBackendCodingChallenge.Models;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;
@@ -30,7 +31,6 @@ namespace CunaBackendCodingChallenge.Test
 
             var txtResponse = await response.Content.ReadAsStringAsync(); // this will return the url
             var responseDictionary = JsonConvert.DeserializeObject<Dictionary<string, string>>(txtResponse);
-            //ClientRequestId = responseDictionary["id"];
             string ClientRequestId = responseDictionary["id"];
 
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
@@ -55,36 +55,30 @@ namespace CunaBackendCodingChallenge.Test
         [TestMethod]
         public async Task Get_ClientByNonExistantId_ReturnsStatusCode404()
         {
-            // Arrange
             var webAppFactory = new WebApplicationFactory<Program>();
             var httpClient = webAppFactory.CreateDefaultClient();
 
-            // Act
             var response = await httpClient.GetAsync("/api/ClientRequest/102");
 
-            // Assert
             Assert.AreEqual(HttpStatusCode.NotFound, response.StatusCode);
         }
 
         [TestMethod]
         public async Task Get_OnSuccess_ReturnsTypeOfClientRequest()
         {
-            // Arrange
             var webAppFactory = new WebApplicationFactory<Program>();
             var httpClient = webAppFactory.CreateDefaultClient();
 
-            // Act
             var response = await httpClient.GetAsync("/api/ClientRequest/1");
             var stringResult = response.Content.ReadAsStringAsync().Result;
 
             ClientRequest clientRequest = JsonConvert.DeserializeObject<ClientRequest>(stringResult);
 
 
-            // Assert
             Assert.IsInstanceOfType(clientRequest, typeof(ClientRequest));
         }
 
-        class wrongFormatClientRequest
+        class wrongFormatClientRequest // creating improperly formatted request objects to make sure the endpoint correctly returns a 400
         {
             public wrongFormatClientRequest(string incorrectFormatBody)
             {
@@ -131,7 +125,7 @@ namespace CunaBackendCodingChallenge.Test
             var json = JsonConvert.SerializeObject(clientRequest);
             var data = new StringContent(json, Encoding.UTF8, "application/json");
 
-            // the endpoint expects 'body' to be a string, this request instead sends an int
+            // the endpoint expects 'body' to be a string, this request instead sends it as an int
             var response = await httpClient.PostAsync("/api/ClientRequest", data);
 
             Assert.AreEqual(HttpStatusCode.BadRequest, response.StatusCode);

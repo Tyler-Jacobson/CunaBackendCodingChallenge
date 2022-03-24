@@ -3,8 +3,9 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using CunaBackendCodingChallenge.DTOs;
+using CunaBackendCodingChallenge.Models.DTOs;
 using static CunaBackendCodingChallenge.MockAPI.Stub;
+using CunaBackendCodingChallenge.Models;
 
 namespace CunaBackendCodingChallenge.Controllers
 {
@@ -23,8 +24,8 @@ namespace CunaBackendCodingChallenge.Controllers
         public async Task<ActionResult<ClientRequest>> Get(int id)
         {
             var clientRequest = await _context.ClientRequests
-                .Where(client => client.Id == id)
-                .Include(client => client.ServiceReport)
+                .Where(clientReq => clientReq.Id == id)
+                .Include(clientReq => clientReq.ServiceReport)
                 .FirstOrDefaultAsync();
 
             if (clientRequest == null)
@@ -60,8 +61,8 @@ namespace CunaBackendCodingChallenge.Controllers
 
             
             var response = await stub.MockPostAsync("http://example.com/request", headers);
-            // makes api call here to 3rd party service
-            // some sort of backup will need to be in place to make a follow-up request in case the service is currently down
+            // would make api call here to 3rd party service
+            // some sort of backup will need to be in place to make a future follow-up request in case the service is currently down
 
             // returns a url that can be used by the client to check the status of their request
             var returnValues = new Dictionary<string, string>

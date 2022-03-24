@@ -2,7 +2,8 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using CunaBackendCodingChallenge.DTOs;
+using CunaBackendCodingChallenge.Models.DTOs;
+using CunaBackendCodingChallenge.Models;
 
 namespace CunaBackendCodingChallenge.Controllers
 {
@@ -23,12 +24,10 @@ namespace CunaBackendCodingChallenge.Controllers
                 return BadRequest("Requests must have a body containing the text 'STARTED'");
 
             var clientRequest = await _context.ClientRequests
-                .Where(c => c.Id == id)
+                .Where(clientReq => clientReq.Id == id)
                 .FirstOrDefaultAsync();
             if (clientRequest == null)
                 return NotFound($"Client Request with id {id} not found");
-
-            clientRequest.ModifiedDateTime = DateTime.UtcNow;
 
             var report = new ServiceReport
             {
@@ -36,6 +35,7 @@ namespace CunaBackendCodingChallenge.Controllers
                 ClientRequestId = id
             };
 
+            clientRequest.ModifiedDateTime = DateTime.UtcNow;
             _context.ServiceReports.Add(report);
             await _context.SaveChangesAsync();
 
