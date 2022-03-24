@@ -22,7 +22,7 @@ namespace CunaBackendCodingChallenge.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("CunaBackendCodingChallenge.ClientRequest", b =>
+            modelBuilder.Entity("CunaBackendCodingChallenge.Models.ClientRequest", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -45,7 +45,7 @@ namespace CunaBackendCodingChallenge.Migrations
                     b.ToTable("ClientRequests");
                 });
 
-            modelBuilder.Entity("CunaBackendCodingChallenge.ServiceReport", b =>
+            modelBuilder.Entity("CunaBackendCodingChallenge.Models.ServiceReport", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -74,18 +74,18 @@ namespace CunaBackendCodingChallenge.Migrations
                     b.ToTable("ServiceReports");
                 });
 
-            modelBuilder.Entity("CunaBackendCodingChallenge.ServiceReport", b =>
+            modelBuilder.Entity("CunaBackendCodingChallenge.Models.ServiceReport", b =>
                 {
-                    b.HasOne("CunaBackendCodingChallenge.ClientRequest", "ClientRequest")
+                    b.HasOne("CunaBackendCodingChallenge.Models.ClientRequest", "ClientRequest")
                         .WithOne("ServiceReport")
-                        .HasForeignKey("CunaBackendCodingChallenge.ServiceReport", "ClientRequestId")
+                        .HasForeignKey("CunaBackendCodingChallenge.Models.ServiceReport", "ClientRequestId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("ClientRequest");
                 });
 
-            modelBuilder.Entity("CunaBackendCodingChallenge.ClientRequest", b =>
+            modelBuilder.Entity("CunaBackendCodingChallenge.Models.ClientRequest", b =>
                 {
                     b.Navigation("ServiceReport");
                 });

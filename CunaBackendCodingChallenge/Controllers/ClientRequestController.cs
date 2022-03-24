@@ -1,10 +1,7 @@
 ﻿using CunaBackendCodingChallenge.Data;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using CunaBackendCodingChallenge.Models.DTOs;
-using static CunaBackendCodingChallenge.MockAPI.Stub;
 using CunaBackendCodingChallenge.Models;
 
 namespace CunaBackendCodingChallenge.Controllers
@@ -72,7 +69,5 @@ namespace CunaBackendCodingChallenge.Controllers
             };
             return Ok(returnValues);
         }
-
-
     }
 }
