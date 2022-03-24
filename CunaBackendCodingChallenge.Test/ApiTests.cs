@@ -58,7 +58,7 @@ namespace CunaBackendCodingChallenge.Test
             var webAppFactory = new WebApplicationFactory<Program>();
             var httpClient = webAppFactory.CreateDefaultClient();
 
-            var response = await httpClient.GetAsync("/api/ClientRequest/102");
+            var response = await httpClient.GetAsync("/api/ClientRequest/642");
 
             Assert.AreEqual(HttpStatusCode.NotFound, response.StatusCode);
         }
