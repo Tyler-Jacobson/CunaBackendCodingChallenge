@@ -1,5 +1,4 @@
-﻿using CunaBackendCodingChallenge.Models;
-using System.Text.Json.Serialization;
+﻿using System.Text.Json.Serialization;
 
 namespace CunaBackendCodingChallenge.Models
 {
@@ -11,6 +10,7 @@ namespace CunaBackendCodingChallenge.Models
         public string? Detail { get; set; } = string.Empty;
         [JsonIgnore]
         public ClientRequest ClientRequest { get; set; }
+        [JsonIgnore]
         public int ClientRequestId { get; set; }
     }
 }

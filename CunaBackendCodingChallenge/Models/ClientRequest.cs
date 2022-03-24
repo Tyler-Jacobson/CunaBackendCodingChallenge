@@ -1,6 +1,4 @@
-﻿using System.Text.Json.Serialization;
-
-namespace CunaBackendCodingChallenge.Models
+﻿namespace CunaBackendCodingChallenge.Models
 {
     public class ClientRequest
     {
